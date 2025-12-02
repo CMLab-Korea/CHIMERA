@@ -2,6 +2,8 @@ import { defineConfig, fontProviders } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
+import path from "path";
+import { fileURLToPath } from "url";
 
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
@@ -10,10 +12,17 @@ import react from "@astrojs/react";
 
 import astroExpressiveCode from "astro-expressive-code";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
+      },
+    },
   },
   markdown: {
     remarkPlugins: [remarkMath],
