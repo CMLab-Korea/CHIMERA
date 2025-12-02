@@ -1,0 +1,425 @@
+---
+title: " CHIMERA: Adaptive Cache Injection and Semantic Anchor Prompting for Zero-shot Image Morphing with Morphing-oriented Metrics"
+authors:
+  - name: Dahyeon Kye
+    notes: ["*", "1"]
+  - name: Jeahun Sung
+    notes: ["*", "1"]
+  - name: Minkyu Jeon
+    notes: ["2"]
+  - name: Jihyong Oh
+    notes: ["†", "1"]
+conference: arXiv 2025
+notes:
+  - symbol: "*"
+    text: equal contribution
+  - symbol: "†"
+    text: corresponding author
+  - symbol: "1"
+    text: Chung-ang University, CMLab
+  - symbol: "2"
+    text: Princeton University
+affiliations:
+  - name: Chung-Ang University
+    logo: src/assets/cau_logo.png
+    url: https://neweng.cau.ac.kr/index.do
+    row: 1
+  - name: Creative Vision and Multimedia Lab (CMLab)
+    logo: src/assets/cmlab_logo.png
+    url: https://cmlab.cau.ac.kr/
+    row: 1
+  - name: Princeton University
+    logo: src/assets/princeton_logo.png
+    url: https://www.princeton.edu/
+    row: 2
+email: "{rpekgus, jhseong, jihyongoh}@cau.ac.kr \n mj7341@princeton.edu"
+links:
+  - name: Paper
+    url: https://github.com/RomanHauksson/academic-project-astro-template
+    icon: ri:file-pdf-2-line
+  - name: Code
+    url: https://github.com/RomanHauksson/academic-project-astro-template
+    icon: ri:github-line
+  - name: arXiv
+    url: https://github.com/RomanHauksson/academic-project-astro-template
+    icon: academicons:arxiv
+
+# The color theme of the page. Defaults to "device" (the preference set in the user's brower or operating system). Setting this to "light" or "dark" will override the user's preference. This is useful if your figures only look good in one theme.
+theme: device
+
+# This is the icon that appears in the user's browser tab. To customize, change the favicon.svg file in /public/, or add your own file to /public/ and change the filename here.
+favicon: favicon.svg
+
+# These keys are optional. If a link to your project page is in a Google search result, text message, or social media post, it will often appear as a "link preview card" based on its title, description, favicon, and thumbnail. After you publish your page, you can double check that these previews look right using [this tool](https://linkpreview.xyz/)
+description: Simple project page template for your research paper, built with Astro and Tailwind
+thumbnail: screenshot-light.png
+---
+
+import Video from "./components/Video.astro";
+import HighlightedSection from "./components/HighlightedSection.astro";
+import SmallCaps from "./components/SmallCaps.astro";
+import Figure from "./components/Figure.astro";
+import Picture from "./components/Picture.astro";
+import ModelViewer from "./components/ModelViewer.astro"
+import TwoColumns from "./components/TwoColumns.astro";
+import YouTubeVideo from "./components/YouTubeVideo.astro";
+import { Comparison } from "./components/Comparison.tsx";
+import { ImageVideoCarousel } from "./components/ImageVideoCarousel.tsx";
+import ImageSlider from "./components/ImageSlider.astro";
+import Glcs_Algo from "./assets/glcs_algorithm.png";
+import Quan7f from "./assets/7f_quan.png";
+import Quan16f from "./assets/16f_quan.png";
+
+import addQual5f1 from "./assets/add_qual_5f_1.pdf";
+import addQual5f2 from "./assets/add_qual_5f_2.pdf";
+import addQual5f3 from "./assets/add_qual_5f_3.pdf";
+import addQual5f4 from "./assets/add_qual_5f_4.pdf";
+import addQual14f1 from "./assets/add_qual_14f_1.pdf";
+import addQual14f2 from "./assets/add_qual_14f_2.pdf";
+import addQual14f3 from "./assets/add_qual_14f_3.pdf";
+import addQual14f4 from "./assets/add_qual_14f_4.pdf";
+
+import outside from "./assets/outside.mp4";
+import transformer from "./assets/transformer.webp";
+import dogsDiffc from "./assets/dogs-diffc.png"
+import dogsTrue from "./assets/dogs-true.png"
+import aciFreq from "./assets/ACI_freq.pdf";
+import teaser from "./assets/teaser2.pdf";
+
+import topImg1 from "./assets/1_A.png";
+import bottomImg1 from "./assets/1_B.png";
+import video1 from "./assets/1.mp4";
+
+import topImg16 from "./assets/16_A.png";
+import bottomImg16 from "./assets/16_B.png";
+import video16 from "./assets/16.mp4";
+
+import topImg19 from "./assets/19_A.png";
+import bottomImg19 from "./assets/19_B.png";
+import video19 from "./assets/19.mp4";
+
+import topImg23 from "./assets/23_A.png";
+import bottomImg23 from "./assets/23_B.png";
+import video23 from "./assets/23.mp4";
+
+import topImg26 from "./assets/26_A.png";
+import bottomImg26 from "./assets/26_B.png";
+import video26 from "./assets/26.mp4";
+
+import topImg34 from "./assets/34_A.png";
+import bottomImg34 from "./assets/34_B.png";
+import video34 from "./assets/34.mp4";
+
+import topImg48 from "./assets/48_A.png";
+import bottomImg48 from "./assets/48_B.png";
+import video48 from "./assets/48.mp4";
+
+import topImg60 from "./assets/60_A.png";
+import bottomImg60 from "./assets/60_B.png";
+import video60 from "./assets/60.mp4";
+
+
+{/* <Video src={outside} /> */}
+
+<h2 className="text-center">Results of CHIMERA</h2>
+{/* ## Results of Chimera */}
+
+<div className="mx-auto mt-2 h-1 w-16 rounded bg-gradient-to-r from-[#00d4ff] to-[#ff3366]"></div>
+
+<Figure>
+  <ImageVideoCarousel 
+    client:idle
+    slot="figure"
+    items={[
+      {
+        topImage: topImg1.src,
+        bottomImage: bottomImg1.src,
+        video: video1,
+      },
+      {
+        topImage: topImg16.src,
+        bottomImage: bottomImg16.src,
+        video: video16
+      },
+      {
+        topImage: topImg19.src,
+        bottomImage: bottomImg19.src,
+        video: video19
+      },
+      {
+        topImage: topImg23.src,
+        bottomImage: bottomImg23.src,
+        video: video23
+      },
+      {
+        topImage: topImg26.src,
+        bottomImage: bottomImg26.src,
+        video: video26
+      },
+      {
+        topImage: topImg34.src,
+        bottomImage: bottomImg34.src,
+        video: video34
+      },
+      {
+        topImage: topImg48.src,
+        bottomImage: bottomImg48.src,
+        video: video48
+      },
+      {
+        topImage: topImg60.src,
+        bottomImage: bottomImg60.src,
+        video: video60
+      }
+    ]}
+  />
+  <Fragment slot="caption"><span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 1.</span> Qualitative Result of Our Method</Fragment>
+</Figure>
+
+<HighlightedSection>
+
+{/* <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent">Results of CHIMERA</span> */}
+
+<h2 className="text-center">Abstract</h2>
+<div className="mx-auto mt-2 h-1 w-16 rounded bg-gradient-to-r from-[#00d4ff] to-[#ff3366]"></div>
+
+{/* ## Abstract */}
+
+Diffusion models exhibit remarkable generative ability, yet achieving smooth and semantically consistent image morphing remains
+ a challenge. Existing approaches often yield abrupt transitions or over-saturated appearances due to the lack of adaptive structural
+  and semantic alignments. We propose <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">CHIMERA,
+   a zero-shot diffusion-based framework that formulates morphing as a cached 
+  inversion–guided denoising process.</span> To handle large semantic and appearance disparities, we propose Adaptive Cache 
+  Injection and Semantic Anchor Prompting. 
+  <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Adaptive Cache Injection (ACI)</span> 
+  caches down, mid, and up blocks' features from both inputs during DDIM inversion and re-injects them adaptively during denoising in depth- and timestep-adaptive manners, 
+  enabling natural feature fusion and smooth transitions. 
+  <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Semantic Anchor Prompting (SAP)</span> leverages a vision–language model to 
+  generate a shared anchor-prompt that serves as a semantic anchor, bridging dissimilar inputs and guiding the denoising process toward coherent results. 
+  Finally, we introduce the 
+  <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Global-Local Consistency Score (GLCS)</span>, 
+  a morphing-oriented metric that simultaneously evaluates 
+  the global harmonization of the two inputs and the smoothness of the local morphing transition. Extensive experiments and 
+  user studies show that Chimera achieves smoother and more semantically aligned transitions than existing methods, 
+  establishing a new state-of-the-art in image morphing. The code and project page will be publicly released.
+</HighlightedSection>
+
+<h2 className="text-center">Motivation & Observation</h2>
+<div className="mx-auto mt-2 h-1 w-16 rounded bg-gradient-to-r from-[#00d4ff] to-[#ff3366]"></div>
+<br />
+
+<TwoColumns>
+  <Figure slot="left">
+    <Picture slot="figure" src="../assets/ACI_freq.pdf" alt="Frequency analysis showing LF bias" />
+    <Fragment slot="caption"><span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 2.</span>
+     Frequency analysis of each feature in the diffusion U-Net and across different denoising timesteps.</Fragment>
+  </Figure>
+  <div slot="right" className="not-prose flex flex-col justify-center">
+    <h4 className="mt-0 text-xl font-semibold">Frequency analysis of the diffusion U-Net and the denoising timesteps</h4>
+    
+    <p className="text-sm"><br /><span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Diffusion features</span> 
+    tend to contain more low-frequency information in the 
+    mid layers and more high-frequency information in the up layers. In addition, 
+    early <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">denoising timesteps</span> 
+    mainly encode low-frequency information, while late timesteps contain more 
+    high-frequency information. Based on these properties, 
+    ACI injects diffusion features that match the characteristics of each denoising timestep.</p>
+  </div>
+</TwoColumns>
+
+
+{/* <Figure>
+  <Picture slot="figure" src="../assets/teaser2.pdf alt="Diagram of the transformer deep learning architecture." invertInDarkMode />
+  <Fragment slot="caption">Diagram of the transformer deep learning architecture.</Fragment>
+</Figure> */}
+
+<Figure>
+  <Picture slot="figure" src="../assets/teaser2.pdf" alt="Diagram of the transformer deep learning architecture." />
+  <Fragment slot="caption">
+    <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 3.</span> 
+    Qualitative examples illustrating how CHIMERA and previous models differ in their ability to preserve 
+    <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent">smoothness</span>, 
+    <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent">domain consistency</span>, and 
+    <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent">perceptual quality</span>.
+  </Fragment>
+</Figure>
+
+
+The proposed CHIMERA shows a well-balanced improvement over previous methods in terms of smoothness, domain consistency, and perceptual quality.
+
+
+<h2 className="text-center">Method</h2>
+<div className="mx-auto mt-2 h-1 w-16 rounded bg-gradient-to-r from-[#00d4ff] to-[#ff3366]"></div>
+
+<Figure>
+  <Picture slot="figure" src="../assets/main_framework.pdf" alt="Diagram of the transformer deep learning architecture." />
+  <Fragment slot="caption"> <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 4.</span>
+  <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent">ACI</span>
+   corrects the timestep mismatch between inversion and denoising via the proposed IDM and reinjects multi-scale cached features (low-frequency structures early and high-frequency details later) 
+   to guide consistent morphing. 
+   <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent">SAP</span>
+    introduces a VLM-derived anchor prompt into early cross-attention layers, stabilizing semantics and reducing drift for heterogeneous input pairs.</Fragment>
+</Figure>
+
+
+<TwoColumns leftWidth="2" rightWidth="1" align="start">
+  <Figure slot="left">
+  <ImageSlider 
+    slot="figure"
+    images={[
+      { src: "../assets/effect_of_gcs.pdf", alt: "Effect of GCS" },
+      { src: "../assets/effect_of_lcs.pdf", alt: "Effect of LCS" }
+    ]}
+  />
+  <Fragment slot="caption">
+    <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 5.</span> 
+    Qualitative examples demonstrating the effectiveness of GLCS. GLCS consists of GCS and LCS, and the qualitative results illustrate how well each component aligns with human perception.
+  </Fragment>
+</Figure>
+  <Figure slot="right">
+    <Picture slot="figure" src={Glcs_Algo} alt="Frequency analysis showing LF bias" />
+    <Fragment slot="caption"><span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Algorithm 1.</span>
+     Algorithm for the full computation of GLCS, which consists of GCS and LCS</Fragment>
+  </Figure>
+</TwoColumns>
+
+{/* <Figure>
+  <ImageSlider 
+    slot="figure"
+    images={[
+      { src: "../assets/effect_of_gcs.pdf", alt: "Effect of GCS" },
+      { src: "../assets/effect_of_lcs.pdf", alt: "Effect of LCS" }
+    ]}
+  />
+  <Fragment slot="caption">
+    <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 5.</span> 
+    Effect of GCS and LCS on morphing quality.
+  </Fragment>
+</Figure> */}
+
+
+{/* Use the figure component to display images, videos, equations, or any other element, with an optional caption.
+
+<Figure>
+  <Picture slot="figure" src={transformer} alt="Diagram of the transformer deep learning architecture." invertInDarkMode />
+  <Fragment slot="caption">Diagram of the transformer deep learning architecture.</Fragment>
+</Figure> */}
+
+{/* If you stored your figures as PDFs, the `Picture` component can convert them into web-friendly images automatically.
+
+<Figure>
+  <Picture slot="figure" src="../assets/allstate-sparsity.pdf" alt="Impact of the sparsity-aware algorithm in XGBoost on the Allstate-10K dataset." invertInDarkMode />
+  <Fragment slot="caption">Impact of the sparsity-aware algorithm in [XGBoost](https://arxiv.org/abs/1603.02754) on the Allstate-10K dataset.</Fragment>
+</Figure> */}
+
+{/* Use the `Comparison` component to compare two elements with an interactive slider. It should work for any component or HTML element, including images, videos, and 3D models.
+
+<Figure>
+  <Comparison slot="figure" client:idle >
+    <Picture slot="itemOne" src={dogsDiffc} alt="Photo of two dogs running side-by-side in shallow water, lossily compressed using the DiffC algorithm" />
+    <Picture slot="itemTwo" src={dogsTrue} alt="Original photo of two dogs running side-by-side in shallow water" />
+  </Comparison>
+  <Fragment slot="caption">A photo of two dogs running side-by-side in shallow water, lossily compressed using the [DiffC algorithm](https://jeremyiv.github.io/diffc-project-page/).</Fragment>
+</Figure> */}
+
+{/* ## Two columns
+
+Use the two columns component to display two columns of content. In this example, the first column contains a figure with a YouTube video and the second column contains a figure with an interactive 3D model viewer. By default, they display side by side, but if the screen is narrow enough (for example, on mobile), they're arranged vertically.
+
+<TwoColumns>
+  <Figure slot="left">
+    <YouTubeVideo slot="figure" videoId="wjZofJX0v4M" />
+    <Fragment slot="caption">Take a look at this YouTube video.</Fragment>
+  </Figure>
+  <Figure slot="right">
+    <ModelViewer slot="figure" src="/BoxVertexColors.glb" alt="A cube colored with a rainbow gradient" />
+    <Fragment slot="caption">Now look at this cube, rendered with the `<model-viewer>` web component.</Fragment>
+  </Figure>
+</TwoColumns> */}
+
+{/* ## $\LaTeX$
+
+You can also add $\LaTeX$ formulas, rendered during the build process using [$\KaTeX$](https://katex.org/) so they're quick to load for visitors of your project page. You can write them inline, like this: $a^2 + b^2 = c^2$. Or, you can write them as a block:
+
+$$
+\int_a^b f(x) dx
+$$
+
+## Tables
+
+Add simple tables using [GitHub Flavored Markdown syntax](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables):
+
+| Model | Accuracy | F1 score | Training time (hours) |
+| :--- | :---: | :---: | :---: |
+| BERT-base | 0.89 | 0.87 | 4.5 |
+| RoBERTa-large | 0.92 | 0.91 | 7.2 |
+| DistilBERT | 0.86 | 0.84 | 2.1 |
+| XLNet | 0.90 | 0.89 | 6.8 | */}
+
+
+<h2 className="text-center">Quantitative Results</h2>
+<div className="mx-auto mt-2 h-1 w-16 rounded bg-gradient-to-r from-[#00d4ff] to-[#ff3366]"></div>
+
+<Figure>
+  <Picture slot="figure" src={Quan7f} alt="Frequency analysis showing LF bias" />
+  <Fragment slot="caption"><span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Table 1.</span>
+    Quantitative results for the 5-frame morphing between each input image pair.</Fragment>
+</Figure>
+
+<Figure>
+  <Picture slot="figure" src={Quan16f} alt="Frequency analysis showing LF bias" />
+  <Fragment slot="caption"><span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Table 2.</span>
+    Quantitative results for the 14-frame morphing between each input image pair.</Fragment>
+</Figure>
+
+<h2 className="text-center">Qualitative Results</h2>
+<div className="mx-auto mt-2 h-1 w-16 rounded bg-gradient-to-r from-[#00d4ff] to-[#ff3366]"></div>
+
+<Figure>
+  <ImageSlider 
+    slot="figure"
+    images={[
+      { src: "../assets/add_qual_5f_1.pdf", alt: "5-frame Qualitative Result 1" },
+      { src: "../assets/add_qual_5f_2.pdf", alt: "5-frame Qualitative Result 2" },
+      { src: "../assets/add_qual_5f_3.pdf", alt: "5-frame Qualitative Result 3" },
+      { src: "../assets/add_qual_5f_4.pdf", alt: "5-frame Qualitative Result 4" }
+    ]}
+  />
+  <Fragment slot="caption">
+    <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 6.</span> 
+    IMPUS shows good domain consistency with the input image pair, but it contains abrupt transitions and therefore lacks smoothness. 
+    DiffMorpher provides smoother transitions, but its domain consistency is weak, with objects disappearing or becoming unstable. 
+    FreeMorph produces overly saturated colors, which are common artifacts in diffusion-based generation. 
+    In contrast, the proposed CHIMERA maintains both smoothness and domain consistency.
+  </Fragment>
+</Figure>
+
+<Figure>
+  <ImageSlider 
+    slot="figure"
+    images={[
+      { src: "../assets/add_qual_14f_1.pdf", alt: "14-frame Qualitative Result 1" },
+      { src: "../assets/add_qual_14f_2.pdf", alt: "14-frame Qualitative Result 2" },
+      { src: "../assets/add_qual_14f_3.pdf", alt: "14-frame Qualitative Result 3" },
+      { src: "../assets/add_qual_14f_4.pdf", alt: "14-frame Qualitative Result 4" }
+    ]}
+  />
+  <Fragment slot="caption">
+    <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 7.</span> 
+    This qualitative evaluation presents the more challenging 14-image morphing results. 
+    Consistent with Fig. 6, CHIMERA maintains both smoothness and domain consistency in this extended setting.
+  </Fragment>
+</Figure>
+
+## BibTeX citation
+
+Displaying your BibTeX citation in a code block makes it easy to copy and paste.
+
+```bibtex
+@misc{roman2024academic,
+  author = "{Roman Hauksson}",
+  title = "Academic Project Page Template",
+  year = "2024",
+  howpublished = "\url{https://research-template.roman.technology}",
+}
+```

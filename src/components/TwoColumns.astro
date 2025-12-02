@@ -1,0 +1,31 @@
+---
+// TODO: when the page is narrow enough, figures with images don't have any horizontal padding
+interface Props {
+  leftWidth?: string;  // e.g., "60%", "2", "300px"
+  rightWidth?: string; // e.g., "40%", "1", "200px"
+  align?: "start" | "center" | "end" | "stretch"; // 수직 정렬
+}
+
+const { leftWidth = "1", rightWidth = "1", align = "stretch" } = Astro.props;
+
+// flex 값인지 확인 (숫자만 있으면 flex-grow로 처리)
+const isFlexValue = (val: string) => /^\d+$/.test(val);
+const leftStyle = isFlexValue(leftWidth) ? `flex: ${leftWidth}` : `width: ${leftWidth}; flex: none`;
+const rightStyle = isFlexValue(rightWidth) ? `flex: ${rightWidth}` : `width: ${rightWidth}; flex: none`;
+
+const alignClass = {
+  start: "items-start",
+  center: "items-center",
+  end: "items-end",
+  stretch: "items-stretch"
+}[align];
+---
+
+<div class={`flex w-full flex-wrap ${alignClass} gap-4`}>
+  <div class="min-w-[16rem] [&>:first-child]:mt-0 [&>:last-child]:mb-0" style={leftStyle}>
+    <slot name="left" />
+  </div>
+  <div class="min-w-[16rem] [&>:first-child]:mt-0 [&>:last-child]:mb-0" style={rightStyle}>
+    <slot name="right" />
+  </div>
+</div>

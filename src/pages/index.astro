@@ -1,0 +1,166 @@
+---
+import { Font, Image } from "astro:assets";
+
+import Links from "../components/Links.astro";
+import Authors from "../components/Authors.astro";
+import Notes from "../components/Notes.astro";
+import type { Author, Note, Link } from "../types/types";
+
+import chimeraLogo from "../assets/chimera_477118.png";
+import cauLogo from "../assets/cau_logo.png";
+import cmlabLogo from "../assets/cmlab_logo.png";
+import princetonLogo from "../assets/princeton_logo.png";
+
+// 로고 이미지 매핑
+const logoMap: Record<string, ImageMetadata> = {
+  "src/assets/cau_logo.png": cauLogo,
+  "src/assets/cmlab_logo.png": cmlabLogo,
+  "src/assets/princeton_logo.png": princetonLogo,
+  "chimera_477118.png": chimeraLogo,
+};
+
+import Table from "../components/Table.astro";
+
+import "../styles/global.css";
+import "katex/dist/katex-swap.css";
+
+import { Content, frontmatter } from "../paper.mdx";
+
+interface Affiliation {
+  name: string;
+  logo: string;
+  url?: string;
+  row?: number;
+}
+
+interface Frontmatter {
+  title: string;
+  authors: Author[];
+  conference?: string;
+  notes?: Note[];
+  affiliations?: Affiliation[];
+  email?: string;
+  links?: Link[];
+  description?: string;
+  favicon: string;
+  thumbnail?: string;
+  theme?: "device" | "light" | "dark";
+}
+
+const {
+  title,
+  authors,
+  conference,
+  notes,
+  affiliations,
+  email,
+  links,
+  description,
+  favicon,
+  thumbnail,
+  theme = "device",
+} = frontmatter as Frontmatter;
+
+const baseUrl = import.meta.env.BASE_URL;
+const prefix = baseUrl.endsWith("/") ? baseUrl : baseUrl + "/";
+
+// Group affiliations by row
+const row1Affiliations = affiliations?.filter(aff => (aff.row || 1) === 1) || [];
+const row2Affiliations = affiliations?.filter(aff => aff.row === 2) || [];
+---
+
+<!doctype html>
+<html lang="en" data-theme={theme}>
+  <head>
+    <meta charset="UTF-8" />
+    {description && <meta name="description" content={description} />}
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="icon" type="image/svg+xml" href={prefix + favicon} />
+
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:type" content="website" />
+    {thumbnail && <meta property="og:image" content={prefix + thumbnail} />}
+
+    <Font cssVariable="--font-noto-sans" preload />
+
+    <title>{title}</title>
+  </head>
+  <body
+    class="prose prose-lg prose-zinc dark:prose-invert prose-a:text-blue-500 prose-a:dark:text-blue-300 prose-a:no-underline prose-a:hover:underline prose-a:font-normal prose-code:bg-zinc-200 prose-code:dark:bg-zinc-800 prose-code:text-zinc-800 prose-code:dark:text-zinc-200 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-medium prose-code:before:content-none prose-code:after:content-none max-w-none bg-white pt-16 pb-6 font-(family-name:--font-noto-sans) dark:bg-zinc-900"
+  >
+    <header class="mx-auto mb-12 max-w-[50rem] px-6 text-center">
+      <h1 class="text-3xl font-medium leading-tight [&>img]:inline [&>img]:m-0">
+        <img src={chimeraLogo.src} alt="CHIMERA Logo" style="height: 1em; width: auto; vertical-align: -0.1em;" /><span class="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent">CHIMERA</span>: Adaptive <span class="font-bold text-[#00d4ff]">C</span>ac<span class="font-bold text-[#2ab8e8]">H</span>e <span class="font-bold text-[#559cd1]">I</span>njection and Se<span class="font-bold text-[#8080ba]">M</span>antic Anchor Prompting for Z<span class="font-bold text-[#aa64a3]">E</span><span class="font-bold text-[#d5488c]">R</span>o-shot Im<span class="font-bold text-[#ff3366]">A</span>ge Morphing with Morphing-oriented Metrics
+      </h1>
+      <div class="flex flex-col items-center gap-4">
+        <!-- Authors in one line -->
+        <Authors authors={authors} />
+        
+        <!-- Conference -->
+        {conference && <div class="text-lg">{conference}</div>}
+        
+        <!-- Notes (corresponding author, equal contribution) -->
+        {notes && <Notes notes={notes} />}
+        
+        <!-- Affiliations with logos -->
+        {affiliations && affiliations.length > 0 && (
+          <div class="flex flex-col items-center gap-4 mt-2">
+            <!-- Row 1: CAU and CMLab - 같은 줄에 표시 -->
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 2rem;">
+              <a href="https://www.cau.ac.kr" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: inherit;">
+                <img src={cauLogo.src} alt="CAU logo" style="height: 3rem; width: auto; margin: 0;" />
+                <span style="font-size: 1rem;">Chung-Ang University</span>
+              </a>
+              <a href="https://sites.google.com/view/cmaboratory" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: inherit;">
+                <img src={cmlabLogo.src} alt="CMLab logo" style="height: 3rem; width: auto; margin: 0;" />
+                <span style="font-size: 1rem;">Creative Vision and Multimedia Lab (CMLab)</span>
+              </a>
+            </div>
+            <!-- Row 2: Princeton -->
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 2rem;">
+              <a href="https://www.princeton.edu" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: inherit;">
+                <img src={princetonLogo.src} alt="Princeton logo" style="height: 3rem; width: auto; margin: 0;" />
+                <span style="font-size: 1rem;">Princeton University</span>
+              </a>
+            </div>
+          </div>
+        )}
+        
+        <!-- Email -->
+        {email && (
+          <div class="text-base text-zinc-600 dark:text-zinc-400">
+            {email.split('\n').map((line, i, arr) => (
+              <>
+                {line}
+                {i < arr.length - 1 && <br />}
+              </>
+            ))}
+          </div>
+        )}
+        
+        <!-- Links -->
+        {links && <Links links={links} />}
+      </div>
+    </header>
+    <main>
+      <Content components={{ table: Table }} />
+    </main>
+    <footer class="mx-auto max-w-[50rem] px-6 text-center">
+      <p class="prose-sm text-center">
+        This page was built using <a
+          href="https://github.com/RomanHauksson/academic-project-astro-template"
+          >Roman Hauksson's template</a
+        >, adapted from <a
+          href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+          >Eliahu Horwitz</a
+        > and <a href="https://nerfies.github.io/">Keunhong Park</a>. Licensed
+        under <a href="http://creativecommons.org/licenses/by-sa/4.0/"
+          >CC BY-SA 4.0</a
+        >.
+      </p>
+    </footer>
+  </body>
+</html>
