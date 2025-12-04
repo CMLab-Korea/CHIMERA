@@ -121,6 +121,16 @@ import video60 from "@/assets/60.mp4";
 
 {/* <Video src={outside} /> */}
 
+<div className="mx-auto max-w-4xl my-8 relative rounded-xl overflow-hidden bg-zinc-800/80">
+  <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#00d4ff] to-[#ff3366]"></div>
+  <div className="p-6 pl-8">
+    <h3 className="text-2xl font-bold text-white mt-0 mb-4">TL;DR</h3>
+    <p className="text-lg text-zinc-200 leading-relaxed m-0">
+      <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">CHIMERA</span> enables smooth and semantically consistent zero-shot image morphing through <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-semibold">Adaptive Cache Injection (ACI)</span> and <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-semibold">Semantic Anchor Prompting (SAP)</span>, along with <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-semibold">GLCS</span>, a new morphing-oriented metric for evaluating transition quality.
+    </p>
+  </div>
+</div>
+
 <h2 className="text-center">Results of CHIMERA</h2>
 {/* ## Results of Chimera */}
 
@@ -195,7 +205,7 @@ Diffusion models exhibit remarkable generative ability, yet achieving smooth and
   caches down, mid, and up blocks' features from both inputs during DDIM inversion and re-injects them adaptively during denoising in depth- and timestep-adaptive manners, 
   enabling natural feature fusion and smooth transitions. 
   <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Semantic Anchor Prompting (SAP)</span> leverages a vision–language model to 
-  generate a shared anchor-prompt that serves as a semantic anchor, bridging dissimilar inputs and guiding the denoising process toward coherent results. 
+  generate a shared anchor prompt that serves as a semantic anchor, bridging dissimilar inputs and guiding the denoising process toward coherent results. 
   Finally, we introduce the 
   <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Global-Local Consistency Score (GLCS)</span>, 
   a morphing-oriented metric that simultaneously evaluates 
@@ -248,7 +258,7 @@ Diffusion models exhibit remarkable generative ability, yet achieving smooth and
 The proposed CHIMERA shows a well-balanced improvement over previous methods in terms of smoothness, domain consistency, and perceptual quality.
 
 
-<h2 className="text-center">Method</h2>
+<h2 className="text-center">Proposed Method</h2>
 <div className="mx-auto mt-2 h-1 w-16 rounded bg-gradient-to-r from-[#00d4ff] to-[#ff3366]"></div>
 
 <Figure>
@@ -261,6 +271,10 @@ The proposed CHIMERA shows a well-balanced improvement over previous methods in 
     introduces a VLM-derived anchor prompt into early cross-attention layers, stabilizing semantics and reducing drift for heterogeneous input pairs.</Fragment>
 </Figure>
 
+<h2 className="text-center">Proposed Metric</h2>
+<div className="mx-auto mt-2 h-1 w-16 rounded bg-gradient-to-r from-[#00d4ff] to-[#ff3366]"></div>
+
+<br />
 
 <TwoColumns leftWidth="2" rightWidth="1" align="start">
   <Figure slot="left">
@@ -387,9 +401,9 @@ Add simple tables using [GitHub Flavored Markdown syntax](https://docs.github.co
   />
   <Fragment slot="caption">
     <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 6.</span> 
-    IMPUS shows good domain consistency with the input image pair, but it contains abrupt transitions and therefore lacks smoothness. 
-    DiffMorpher provides smoother transitions, but its domain consistency is weak, with objects disappearing or becoming unstable. 
-    FreeMorph produces overly saturated colors, which are common artifacts in diffusion-based generation. 
+    IMPUS \[ICLR'24\] shows good domain consistency with the input image pair, but it contains abrupt transitions and therefore lacks smoothness. 
+    DiffMorpher \[CVPR'24\] provides smoother transitions, but its domain consistency is weak, with objects disappearing or becoming unstable. 
+    FreeMorph \[ICCV'25\] produces overly saturated colors, which are common artifacts in diffusion-based generation. 
     In contrast, the proposed CHIMERA maintains both smoothness and domain consistency.
   </Fragment>
 </Figure>
@@ -413,13 +427,14 @@ Add simple tables using [GitHub Flavored Markdown syntax](https://docs.github.co
 
 ## BibTeX citation
 
-Displaying your BibTeX citation in a code block makes it easy to copy and paste.
+TBD;
+{/* Displaying your BibTeX citation in a code block makes it easy to copy and paste. */}
 
-```bibtex
+{/* ```bibtex
 @misc{roman2024academic,
   author = "{Roman Hauksson}",
   title = "Academic Project Page Template",
   year = "2024",
   howpublished = "\url{https://research-template.roman.technology}",
 }
-```
+``` */}
