@@ -92,8 +92,10 @@ const row2Affiliations = affiliations?.filter(aff => aff.row === 2) || [];
     class="prose prose-lg prose-zinc dark:prose-invert prose-a:text-blue-500 prose-a:dark:text-blue-300 prose-a:no-underline prose-a:hover:underline prose-a:font-normal prose-code:bg-zinc-200 prose-code:dark:bg-zinc-800 prose-code:text-zinc-800 prose-code:dark:text-zinc-200 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-medium prose-code:before:content-none prose-code:after:content-none max-w-none bg-white pt-16 pb-6 font-(family-name:--font-noto-sans) dark:bg-zinc-900"
   >
     <header class="mx-auto mb-12 max-w-[50rem] px-6 text-center">
-      <h1 class="text-3xl font-medium leading-tight [&>img]:inline [&>img]:m-0">
-        <img src={chimeraLogo.src} alt="CHIMERA Logo" style="height: 1em; width: auto; vertical-align: -0.1em;" />
+      <h1 class="text-3xl font-medium leading-tight [&_img]:inline [&_img]:m-0">
+        <a href="https://arxiv.org/abs/2512.07155" target="_blank" rel="noopener noreferrer" class="inline-block hover:opacity-80 transition-opacity">
+          <img src={chimeraLogo.src} alt="CHIMERA Logo" style="height: 1em; width: auto; vertical-align: -0.1em;" />
+        </a>
         <span class="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">CHIMERA</span>: Adaptive <span class="font-bold bg-gradient-to-r from-[#00d4ff] to-[#2ab8e8] bg-clip-text text-transparent">C</span>ac<span class="font-bold bg-gradient-to-r from-[#2ab8e8] to-[#559cd1] bg-clip-text text-transparent">H</span>e <span class="font-bold bg-gradient-to-r from-[#559cd1] to-[#8080ba] bg-clip-text text-transparent">I</span>njection and Se<span class="font-bold bg-gradient-to-r from-[#8080ba] to-[#aa64a3] bg-clip-text text-transparent">M</span>antic Anchor Prompting for Z<span class="font-bold bg-gradient-to-r from-[#aa64a3] to-[#d5488c] bg-clip-text text-transparent">E</span><span class="font-bold bg-gradient-to-r from-[#d5488c] to-[#ea3f79] bg-clip-text text-transparent">R</span>o-shot Im<span class="font-bold bg-gradient-to-r from-[#ea3f79] to-[#ff3366] bg-clip-text text-transparent">A</span>ge Morphing with Morphing-oriented Metrics
       </h1>
       <div class="flex flex-col items-center gap-4">
@@ -111,13 +113,13 @@ const row2Affiliations = affiliations?.filter(aff => aff.row === 2) || [];
           <div class="flex flex-col items-center gap-4 mt-2">
             <!-- Row 1: CAU and CMLab - 같은 줄에 표시 -->
             <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 2rem;">
-              <a href="https://www.cau.ac.kr" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: inherit;">
-                <img src={cauLogo.src} alt="CAU logo" style="height: 3rem; width: auto; margin: 0;" />
-                <span style="font-size: 1rem;">Chung-Ang University</span>
-              </a>
               <a href="https://cmlab.cau.ac.kr/" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: inherit;">
                 <img src={cmlabLogo.src} alt="CMLab logo" style="height: 3rem; width: auto; margin: 0;" />
                 <span style="font-size: 1rem;">Creative Vision and Multimedia Lab (CMLab)</span>
+              </a>
+              <a href="https://www.cau.ac.kr" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: inherit;">
+                <img src={cauLogo.src} alt="CAU logo" style="height: 3rem; width: auto; margin: 0;" />
+                <span style="font-size: 1rem;">Chung-Ang University</span>
               </a>
             </div>
             <!-- Row 2: Princeton -->
