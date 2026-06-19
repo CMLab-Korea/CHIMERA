@@ -9,7 +9,7 @@ authors:
     notes: ["2"]
   - name: Jihyong Oh
     notes: ["†", "1"]
-conference: arXiv 2025
+conference: ECCV 2026
 notes:
   - symbol: "*"
     text: equal contribution
@@ -66,7 +66,8 @@ import YouTubeVideo from "@/components/YouTubeVideo.astro";
 import { Comparison } from "@/components/Comparison.tsx";
 import { ImageVideoCarousel } from "@/components/ImageVideoCarousel.tsx";
 import ImageSlider from "@/components/ImageSlider.astro";
-import Glcs_Algo from "@/assets/GLCS_algorithm.png";
+import Glcs_Algo from "@/assets/GLCS_algo.png";
+import Chimera_Algo from "@/assets/CHIMERA_algo.png";
 import Quan7f from "@/assets/7f_quan.png";
 import Quan16f from "@/assets/16f_quan.png";
 
@@ -238,14 +239,30 @@ Diffusion models exhibit remarkable generative ability, yet achieving smooth and
   establishing a new state-of-the-art in image morphing. The code and project page will be publicly released.
 </HighlightedSection>
 
+<h2 className="text-center">Overview</h2>
+<div className="mx-auto mt-2 h-1 w-16 rounded bg-gradient-to-r from-[#00d4ff] to-[#ff3366]"></div>
+<br />
+
+<Figure>
+  <Picture slot="figure" src="../assets/teaser_color.pdf" alt="CHIMERA teaser overview: smoothness, domain consistency, perceptual quality, user study, and efficiency" />
+  <Fragment slot="caption"><span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 2.</span>
+   Given two input images, CHIMERA generates perceptually smooth transitions while jointly satisfying three key criteria: Smoothness, Domain Consistency, and Perceptual Quality (left; red arrows highlight failure modes of prior methods). Our user study further shows that CHIMERA is consistently preferred over baselines across all criteria, and this preference trend aligns with our morphing-oriented metric, GLCS. Finally, CHIMERA is training-free and efficient, achieving favorable runtime and computational cost compared to tuning-based approaches (right).</Fragment>
+</Figure>
+
 <h2 className="text-center">Motivation & Observation</h2>
 <div className="mx-auto mt-2 h-1 w-16 rounded bg-gradient-to-r from-[#00d4ff] to-[#ff3366]"></div>
 <br />
 
+<Figure>
+  <Picture slot="figure" src="../assets/observation1.pdf" alt="Observation on diffusion feature reuse across KV, QKV, and ResNet features" />
+  <Fragment slot="caption"><span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 3.</span>
+   Observation on diffusion feature reuse. (a) reuses only attention-layer Key/Value features (KV), (b) reuses attention features including Query (Attn; QKV), and (c) further includes ResNet features (Attn, Res). (i) shows qualitative results, (ii) reports domain consistency, and (iii) reports smoothness. The results in (ii) and (iii) are averaged over the Morph4Data dataset.</Fragment>
+</Figure>
+
 <TwoColumns>
   <Figure slot="left">
     <Picture slot="figure" src="../assets/ACI_freq.pdf" alt="Frequency analysis showing LF bias" />
-    <Fragment slot="caption"><span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 2.</span>
+    <Fragment slot="caption"><span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 4.</span>
      Frequency analysis of each feature in the diffusion U-Net and across different denoising timesteps.</Fragment>
   </Figure>
   <div slot="right" className="not-prose flex flex-col justify-center">
@@ -267,27 +284,12 @@ Diffusion models exhibit remarkable generative ability, yet achieving smooth and
   <Fragment slot="caption">Diagram of the transformer deep learning architecture.</Fragment>
 </Figure> */}
 
-<Figure>
-  <Picture slot="figure" src="../assets/teaser2.pdf" alt="Diagram of the transformer deep learning architecture." />
-  <Fragment slot="caption">
-    <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 3.</span> 
-    Qualitative examples illustrating how CHIMERA and previous models differ in their ability to preserve 
-    <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent">smoothness</span>, 
-    <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent">domain consistency</span>, and 
-    <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent">perceptual quality</span>.
-  </Fragment>
-</Figure>
-
-
-The proposed CHIMERA shows a well-balanced improvement over previous methods in terms of smoothness, domain consistency, and perceptual quality.
-
-
 <h2 className="text-center">Proposed Method</h2>
 <div className="mx-auto mt-2 h-1 w-16 rounded bg-gradient-to-r from-[#00d4ff] to-[#ff3366]"></div>
 
 <Figure>
   <Picture slot="figure" src="../assets/main_framework.pdf" alt="Diagram of the transformer deep learning architecture." />
-  <Fragment slot="caption"> <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 4.</span>
+  <Fragment slot="caption"> <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 5.</span>
   <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent">ACI</span>
    corrects the timestep mismatch between inversion and denoising via the proposed IDM and reinjects multi-scale cached features (low-frequency structures early and high-frequency details later) 
    to guide consistent morphing. 
@@ -295,13 +297,18 @@ The proposed CHIMERA shows a well-balanced improvement over previous methods in 
     introduces a VLM-derived anchor prompt into early cross-attention layers, stabilizing semantics and reducing drift for heterogeneous input pairs.</Fragment>
 </Figure>
 
+<Figure>
+  <Picture slot="figure" src={Chimera_Algo} alt="Algorithm for the CHIMERA method (ACI and SAP)" />
+  <Fragment slot="caption"><span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Algorithm 1.</span>
+   Algorithm for the full CHIMERA pipeline, combining Adaptive Cache Injection (ACI) and Semantic Anchor Prompting (SAP).</Fragment>
+</Figure>
+
 <h2 className="text-center">Proposed Metric</h2>
 <div className="mx-auto mt-2 h-1 w-16 rounded bg-gradient-to-r from-[#00d4ff] to-[#ff3366]"></div>
 
 <br />
 
-<TwoColumns leftWidth="2" rightWidth="1" align="start">
-  <Figure slot="left">
+<Figure>
   <ImageSlider 
     slot="figure"
     images={[
@@ -310,16 +317,16 @@ The proposed CHIMERA shows a well-balanced improvement over previous methods in 
     ]}
   />
   <Fragment slot="caption">
-    <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 5.</span> 
+    <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 6.</span> 
     Qualitative examples demonstrating the effectiveness of GLCS. GLCS consists of GCS and LCS, and the qualitative results illustrate how well each component aligns with human perception.
   </Fragment>
 </Figure>
-  <Figure slot="right">
-    <Picture slot="figure" src={Glcs_Algo} alt="Frequency analysis showing LF bias" />
-    <Fragment slot="caption"><span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Algorithm 1.</span>
-     Algorithm for the full computation of GLCS, which consists of GCS and LCS</Fragment>
-  </Figure>
-</TwoColumns>
+
+<Figure>
+  <Picture slot="figure" src={Glcs_Algo} alt="Algorithm for the full computation of GLCS" />
+  <Fragment slot="caption"><span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Algorithm 2.</span>
+   Algorithm for the full computation of GLCS, which consists of GCS and LCS.</Fragment>
+</Figure>
 
 {/* <Figure>
   <ImageSlider 
@@ -424,7 +431,7 @@ Add simple tables using [GitHub Flavored Markdown syntax](https://docs.github.co
     ]}
   />
   <Fragment slot="caption">
-    <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 6.</span> 
+    <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 7.</span> 
     IMPUS \[ICLR'24\] shows good domain consistency with the input image pair, but it contains abrupt transitions and therefore lacks smoothness. 
     DiffMorpher \[CVPR'24\] provides smoother transitions, but its domain consistency is weak, with objects disappearing or becoming unstable. 
     FreeMorph \[ICCV'25\] produces overly saturated colors, which are common artifacts in diffusion-based generation. 
@@ -443,15 +450,22 @@ Add simple tables using [GitHub Flavored Markdown syntax](https://docs.github.co
     ]}
   />
   <Fragment slot="caption">
-    <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 7.</span> 
+    <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Figure 8.</span> 
     This qualitative evaluation presents the more challenging 14-image morphing results. 
-    Consistent with Fig. 6, CHIMERA maintains both smoothness and domain consistency in this extended setting.
+    Consistent with Fig. 7, CHIMERA maintains both smoothness and domain consistency in this extended setting.
   </Fragment>
 </Figure>
 
 ## BibTeX citation
 
-TBD;
+```bibtex
+@inproceedings{kye2026chimera,
+  title={CHIMERA: Adaptive Cache Injection and Semantic Anchor Prompting for Zero-shot Image Morphing with Morphing-oriented Metrics},
+  author={Kye, Dahyeon and Sung, Jeahun and Jeon, Minkyu and Oh, Jihyong},
+  booktitle={Proceedings of the European Conference on Computer Vision (ECCV)},
+  year={2026}
+}
+```
 {/* Displaying your BibTeX citation in a code block makes it easy to copy and paste. */}
 
 {/* ```bibtex

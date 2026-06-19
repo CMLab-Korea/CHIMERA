@@ -103,7 +103,13 @@ const row2Affiliations = affiliations?.filter(aff => aff.row === 2) || [];
         <Authors authors={authors} />
         
         <!-- Conference -->
-        {conference && <div class="text-lg">{conference}</div>}
+        {conference && (
+          <div class="not-prose">
+            <span class="inline-block rounded-full bg-gradient-to-r from-[#0090d0] to-[#d6004a] px-7 py-2.5 text-xl font-bold text-white shadow-lg">
+              {conference}
+            </span>
+          </div>
+        )}
         
         <!-- Notes (corresponding author, equal contribution) -->
         {notes && <Notes notes={notes} />}
