@@ -1,6 +1,6 @@
 # CHIMERA — Project Page
 
-Project page for **CHIMERA: Adaptive Cache Injection and Semantic Anchor Prompting for Zero-shot Image Morphing with Morphing-oriented Metrics** (ECCV 2026).
+Project page for **CHIMERA: Adaptive Cache Injection and Semantic Anchor Prompting for Zero-shot Image Morphing with Morphing-oriented Metrics** (arXiv 2026).
 
 **Authors:** Dahyeon Kye\*, Jeahun Sung\*, Minkyu Jeon, Jihyong Oh† &nbsp; (\*equal contribution, †corresponding author)
 **Affiliations:** Creative Vision and Multimedia Lab (CMLab), Chung-Ang University · Princeton University
@@ -25,10 +25,10 @@ Built from the [Academic Project Astro Template](https://github.com/RomanHauksso
 ## Citation
 
 ```bibtex
-@inproceedings{kye2026chimera,
+@article{kye2025chimera,
   title={CHIMERA: Adaptive Cache Injection and Semantic Anchor Prompting for Zero-shot Image Morphing with Morphing-oriented Metrics},
   author={Kye, Dahyeon and Sung, Jeahun and Jeon, Minkyu and Oh, Jihyong},
-  booktitle={Proceedings of the European Conference on Computer Vision (ECCV)},
-  year={2026}
+  journal={arXiv preprint arXiv:2512.07155},
+  year={2025}
 }
 ```
