@@ -43,9 +43,6 @@ links:
   - name: arXiv
     url: https://arxiv.org/abs/2512.07155
     icon: academicons:arxiv
-  - name: Presentation
-    url: https://youtu.be/ClaWsVVHP98
-    icon: ri:youtube-line
 
 # The color theme of the page. Defaults to "device" (the preference set in the user's brower or operating system). Setting this to "light" or "dark" will override the user's preference. This is useful if your figures only look good in one theme.
 theme: device
@@ -223,23 +220,24 @@ import video60 from "@/assets/60.mp4";
 
 {/* ## Abstract */}
 
-Diffusion models exhibit remarkable generative ability, yet achieving smooth and semantically consistent image morphing remains
- a challenge. Existing approaches often yield abrupt transitions or over-saturated appearances due to the lack of adaptive structural
-  and semantic alignments. We propose <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">CHIMERA,
-   a zero-shot diffusion-based framework that formulates morphing as a cached 
-  inversion–guided denoising process.</span> To handle large semantic and appearance disparities, we propose Adaptive Cache 
-  Injection and Semantic Anchor Prompting. 
-  <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Adaptive Cache Injection (ACI)</span> 
-  caches down, mid, and up blocks' features from both inputs during DDIM inversion and re-injects them adaptively during denoising in depth- and timestep-adaptive manners, 
-  enabling natural feature fusion and smooth transitions. 
-  <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Semantic Anchor Prompting (SAP)</span> leverages a vision–language model to 
-  generate a shared anchor prompt that serves as a semantic anchor, bridging dissimilar inputs and guiding the denoising process toward coherent results. 
-  Finally, we introduce the 
-  <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Global-Local Consistency Score (GLCS)</span>, 
-  a morphing-oriented metric that simultaneously evaluates 
-  the global harmonization of the two inputs and the smoothness of the local morphing transition. Extensive experiments and 
-  user studies show that Chimera achieves smoother and more semantically aligned transitions than existing methods, 
-  establishing a new state-of-the-art in image morphing. The code and project page will be publicly released.
+Recent diffusion-based image morphing methods typically interpolate inverted latents and reuse limited
+ conditioning signals, often yielding unstable intermediates for heterogeneous endpoint pairs. In particular,
+  (i) feature reuse is usually partial or non-adaptive, leading to abrupt structural changes or over-smoothing,
+   and (ii) text conditions are commonly obtained independently per endpoint and then interpolated, which can
+    introduce incompatible semantics. We present <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">CHIMERA, a novel zero-shot diffusion
+     morphing framework that addresses both issues via inversion-guided denoising with complementary feature
+      reuse and text conditioning.</span>
+  <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Adaptive Cache Injection (ACI)</span>
+  caches a broader set of multi-scale diffusion features beyond Key–Value-only reuse during DDIM inversion and
+   re-injects them with layer- and timestep-aware scheduling to stabilize denoising and enable gradual fusion.
+  <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Semantic Anchor Prompting (SAP)</span> uses a VLM to
+   generate a shared anchor-prompt and anchor-conditioned endpoint prompts and injects the anchor into
+    cross-attention to improve intermediate semantic coherence. Finally, we propose the
+  <span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Global-Local Consistency Score (GLCS)</span>,
+  a morphing-oriented metric that jointly captures global domain harmonization and local transition smoothness.
+   Extensive experiments and a user study show that CHIMERA produces smoother and more semantically consistent
+    morphing results than prior methods while remaining efficient and applicable across diverse diffusion
+     backbones without retraining.
 </HighlightedSection>
 
 <h2 className="text-center">Overview</h2>
@@ -411,7 +409,7 @@ Add simple tables using [GitHub Flavored Markdown syntax](https://docs.github.co
 <Figure>
   <Picture slot="figure" src={Quan7f} alt="Frequency analysis showing LF bias" />
   <Fragment slot="caption"><span className="bg-gradient-to-r from-[#00d4ff] to-[#ff3366] bg-clip-text text-transparent font-bold">Table 1.</span>
-    Quantitative results for the 5-frame morphing between each input image pair.</Fragment>
+    tative results for the 5-frame morphing between each input image pair.</Fragment>
 </Figure>
 
 <Figure>
